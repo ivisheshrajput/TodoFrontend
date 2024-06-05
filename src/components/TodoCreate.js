@@ -37,7 +37,9 @@ const TodoCreate = () => {
                   />
                 </div>
               </div>
-              <div className="text-3xl text-black cursor-pointer flex justify-end mt-2"><MdAddCircleOutline /></div>
+              <div className="text-3xl  text-black cursor-pointer flex justify-end mt-2">
+                <MdAddCircleOutline />
+              </div>
             </div>
           </form>
         </div>
