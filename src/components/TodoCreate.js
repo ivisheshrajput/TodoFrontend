@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdAddCircleOutline } from "react-icons/md";
 
-const TodoCreate = () => {
+const TodoCreate = ({ onCreate }) => {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { title, description } = formData;
+    onCreate(title, description);
+    console.log(title, "dddddd");
+    setFormData({ title: "", description: "" });
+  };
   return (
     <div>
       <div className="w-11/12 mx-auto  text-black  md:rounded-3xl rounded-md mb-5  bg-primary-400 shadow-sm  bg-gradient-to-b from-primary-800 ">
         <div className="px-6 py-3 ">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="">
               <div className="md:flex items-center md:space-x-5 ">
                 {" "}
@@ -20,6 +36,8 @@ const TodoCreate = () => {
                     text-sm placeholder-primary-400 focus:outline-none focus:border-1 focus:border-custom-purple focus:bg-white
                     focus:ring-1 focus:ring-primary-400  "
                     name="title"
+                    value={formData.title}
+                    onChange={handleChange}
                     required
                   />
                 </div>
@@ -33,13 +51,18 @@ const TodoCreate = () => {
                     text-sm placeholder-primary-400 focus:outline-none focus:border-1 focus:border-custom-purple focus:bg-white
                     focus:ring-1 focus:ring-primary-400 "
                     name="description"
+                    value={formData.description}
+                    onChange={handleChange}
                     required
                   />
                 </div>
               </div>
-              <div className="text-3xl  text-black cursor-pointer flex justify-end mt-2">
+              <button
+                className="text-3xl  text-black cursor-pointer flex justify-end mt-2"
+                type="submit"
+              >
                 <MdAddCircleOutline />
-              </div>
+              </button>
             </div>
           </form>
         </div>
