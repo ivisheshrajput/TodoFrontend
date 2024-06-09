@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 
 const useDeleteTodo = () => {
   const [isDeleting, setIsDeleting] = useState(false);
